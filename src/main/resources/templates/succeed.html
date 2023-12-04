@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html dir="ltr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+
+    <title>Succeed</title>
+
+    <link th:href="@{/dist/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="main-wrapper">
+    <div class="row text-center ">
+        <div class="col-lg-12 col-md-4 bg-white">
+            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show">
+                Регистрация прошла успешно, <span th:text="${form.login}"></span>!
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-4 bg-white">
+            <a th:href="@{/login}">Войти</a> в личный кабинет
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
