@@ -1,3 +1,4 @@
+/*
 package ru.runplanner.user.service;
 
 import lombok.RequiredArgsConstructor;
@@ -48,3 +49,4 @@ public class UserService {
         return userDto;
     }
 }
+*/

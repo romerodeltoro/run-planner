@@ -1,3 +1,4 @@
+/*
 package ru.runplanner.mapper;
 
 import org.mapstruct.Mapper;
@@ -14,3 +15,4 @@ public interface UserMapper {
 
     User toUser(UserDto userDto);
 }
+*/

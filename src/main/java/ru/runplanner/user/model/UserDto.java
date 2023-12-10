@@ -1,3 +1,4 @@
+/*
 package ru.runplanner.user.model;
 
 import lombok.AllArgsConstructor;
@@ -14,3 +15,4 @@ public class UserDto {
     private String password;
 
 }
+*/

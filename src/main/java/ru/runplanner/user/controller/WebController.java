@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping()
 public class WebController {
 
-    @GetMapping
-    public String getHome() {
-        return "Hello!";
-    }
+
+
+
+
 
     @GetMapping("/user/{id}/dashboard")
     public String getDashboard(@PathVariable Long id) {
