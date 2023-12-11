@@ -16,43 +16,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "login")
-    private String login;
-    @Column(name = "email")
+    @Column(unique = true)
     private String email;
-    @Column(name = "password")
     private String password;
-    @Column(name = "registration_Date")
-    private final LocalDateTime registrationDate = LocalDateTime.now();
-
-    public String getUsername() {
-        return login;
-    }
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
+    private String roles;
+    private LocalDateTime registrationDate = LocalDateTime.now();
 }

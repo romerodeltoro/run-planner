@@ -1,3 +1,4 @@
+/*
 package ru.runplanner.user.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -17,3 +18,4 @@ public class LoginController {
         return "login";
     }
 }
+*/

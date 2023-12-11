@@ -7,11 +7,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.runplanner.user.dto.UserDto;
 import ru.runplanner.user.service.UserService;
+import ru.runplanner.user.service.impl.UserServiceImpl;
 
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
