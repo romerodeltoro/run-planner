@@ -11,17 +11,21 @@ import ru.runplanner.user.storage.UserRepository;
 import java.util.Optional;
 
 @Configuration
-public class UserInfoUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<User> user = userRepository.findUserByEmail(email);
+        User user = userRepo.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("user not found");
+        } else {
+            return new CustomUser(user);
+        }
 
-        return user.map(UserInfoDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email=" + email + " not found"));
     }
+
 }

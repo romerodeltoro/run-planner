@@ -14,10 +14,25 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+
+    private String login;
+
     @Column(unique = true)
     private String email;
-    private String password;
-    private String roles;
 
+    private String password;
+
+    private String role;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                ", password='*****' " +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

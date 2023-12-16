@@ -9,13 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping()
 public class WebController {
 
-
-
-
-
-
     @GetMapping("/user/{id}/dashboard")
     public String getDashboard(@PathVariable Long id) {
-        return "dashboard";
+        return "profile";
     }
 }

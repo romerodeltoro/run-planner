@@ -18,17 +18,16 @@
     <link th:href="@{/dist/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="text-container">
-                <h1 class="h1-large">Начни готовиться к марафону уже сегодня</h1>
-                <button type="button" class="btn-primary" th:href="@{/register}">Зарегистрироваться</button>
-                <button type="button" class="btn-secondary" th:href="@{/login}">Войти</button>
-            </div> <!-- end of text-container -->
-        </div> <!-- end of col -->
-    </div> <!-- end of row -->
-</div> <!-- end of container -->
+
+
+<section class="text-center">
+    <h1>Profile Page</h1>
+
+    <h4>Name: [[${user.login}]]</h4>
+    <h4>Email: [[${user.email}]]</h4>
+    <h4>Role: [[${user.role}]]</h4>
+    <a href="/logout">Logout</a>
+</section>
 
 </body>
 </html>

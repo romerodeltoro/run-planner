@@ -7,36 +7,31 @@ import ru.runplanner.user.model.User;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
-public class UserInfoDetails implements UserDetails {
+public class CustomUser implements UserDetails {
 
-    private String email;
-    private String password;
-    private List<GrantedAuthority> roles;
+    private User user;
 
-    public UserInfoDetails(User user) {
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.roles = Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+    public CustomUser(User user) {
+        super();
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
+
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
+        return Arrays.asList(authority);
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return user.getEmail();
     }
 
     @Override
@@ -58,4 +53,6 @@ public class UserInfoDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
+
