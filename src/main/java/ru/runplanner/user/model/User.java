@@ -5,21 +5,34 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 
-@Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+
+    private String login;
+
     @Column(unique = true)
     private String email;
+
     private String password;
-    private String roles;
-    private LocalDateTime registrationDate = LocalDateTime.now();
+
+    private String role;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                ", password='*****' " +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

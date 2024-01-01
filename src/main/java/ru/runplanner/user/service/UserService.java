@@ -1,10 +1,11 @@
 package ru.runplanner.user.service;
 
-import ru.runplanner.user.dto.UserDto;
+import ru.runplanner.user.dto.UserCreateDto;
+import ru.runplanner.user.model.User;
 
-public interface UserService {
+public interface UserService{
 
-    UserDto createUser(UserDto userDto);
+    UserCreateDto saveUser(UserCreateDto userDto);
 
-    UserDto getUser(Long id);
+    void removeSessionMessage();
 }

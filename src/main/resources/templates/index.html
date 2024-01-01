@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html dir="ltr"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-        th:replace="base::Layout(~{::section})">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-<!--    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">-->
+    <!--    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">-->
 
-    <title>RunPlanner</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>HOME</title>
 
     <link th:href="@{/dist/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <div class="row text-center ">
-        <div class="col-lg-12 col-md-4 bg-white">
-            <h2>
-                <span class="badge bg-secondary">RUN</span>
-                Planner
-            </h2>
-            <div class="col-lg-12 text-center">
-                <a th:href="@{/register}" type="button" class="btn btn-outline-primary">Зарегистрироваться</a>
-                <p>или</p>
-                <a th:href="@{/login}" type="button" class="btn btn-outline-secondary">Войти</a>
-            </div>
-
-        </div>
-    </div>
-
-</div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="text-container">
+                <h1 class="h1-large">Начни готовиться к марафону уже сегодня</h1>
+                <button type="button" class="btn-primary" th:href="@{/register}">Зарегистрироваться</button>
+                <button type="button" class="btn-secondary" th:href="@{/login}">Войти</button>
+            </div> <!-- end of text-container -->
+        </div> <!-- end of col -->
+    </div> <!-- end of row -->
+</div> <!-- end of container -->
 
 </body>
 </html>
