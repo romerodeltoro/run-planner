@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateDto {

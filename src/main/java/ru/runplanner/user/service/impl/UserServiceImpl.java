@@ -3,6 +3,9 @@ package ru.runplanner.user.service.impl;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +21,7 @@ import ru.runplanner.user.storage.UserRepository;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -29,8 +32,8 @@ public class UserServiceImpl implements UserService {
     public UserCreateDto saveUser(UserCreateDto userDto) {
 
         String password = passwordEncoder.encode(userDto.getPassword());
-        userDto.setPassword(password);
         User createdUser = userRepository.save(UserMapper.INSTANCE.toUser(userDto));
+        createdUser.setPassword(password);
         createdUser.setRole("ROLE_USER");
         log.info("Создан новый пользователь {}", createdUser);
 
@@ -46,4 +49,8 @@ public class UserServiceImpl implements UserService {
         session.removeAttribute("msg");
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
 }
