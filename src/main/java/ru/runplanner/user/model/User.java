@@ -1,29 +1,80 @@
 package ru.runplanner.user.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.Collections;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private Long id;
     private String login;
-
-    @Column(unique = true)
     private String email;
-
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    private String role;
+    public User(String login,
+                   String email,
+                   String password,
+                   UserRole userRole
+    ) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
+        return Collections.singleton(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 
     @Override
     public String toString() {
@@ -31,8 +82,9 @@ public class User {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", email='" + email + '\'' +
-                ", password='*****' " +
-                ", role='" + role + '\'' +
+                ", appUserRole=" + userRole +
+                ", locked=" + locked +
+                ", enabled=" + enabled +
                 '}';
     }
 }
