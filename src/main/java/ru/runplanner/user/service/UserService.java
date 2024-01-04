@@ -1,8 +1,6 @@
 package ru.runplanner.user.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,25 +14,16 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
-    private final static String USER_NOT_FOUND = "User with email - '%s' not found";
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final ConfirmationTokenService tokenService;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND, email)));
-    }
 
-    public String singUpUser(User user) {
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
 
-        if (userExists) {
-            throw new IllegalStateException("email already taken");
-        }
+    public String addUser(User user) {
+        findUserByEmailOrThrow(user.getEmail());
 
         String encodedPassword = passwordEncoder
                 .encode(user.getPassword());
@@ -61,5 +50,11 @@ public class UserService implements UserDetailsService {
 
     public int enableAppUser(String email) {
         return userRepository.enableAppUser(email);
+    }
+
+    private User findUserByEmailOrThrow(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        String.format("Пользователя с email - '%s' нет", email)));
     }
 }
