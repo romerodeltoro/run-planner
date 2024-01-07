@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -28,6 +29,7 @@ public class User implements UserDetails {
     private UserRole userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public User(String login,
                    String email,
